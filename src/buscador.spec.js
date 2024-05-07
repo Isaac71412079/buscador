@@ -25,11 +25,17 @@ describe("Buscador", () =>{
         expect(buscarProyecto("Project_2", proyectos)).toEqual(["my_Project_2", "my_Special_Project_2"]);
     });
 
-    // 2.-buscar y enceontrar proyectos cuyo nombre empieza con el criterio de busqueda
+    // 2.-buscar y encontrar proyectos cuyo nombre empieza con el criterio de busqueda
          // por ejm: "ejerc" y en mi lista tengo "ejercio1", "ejercicio2" -> devuelve ambos
     it("finds projects that start with the search criteria", () => {
         let proyectos = ["ejercicio1", "ejercicio2", "proyectoFinal"];
         expect(buscarProyecto("ejerc", proyectos)).toEqual(["ejercicio1", "ejercicio2"]);
+    });
+
+    // 3.- Devuelve "" cuando no existe una coincidencia con ningun proyecto
+    it("Devuelve nothing cuando no existe una coincidencia con ningun proyecto", () => {
+        let proyectos = ["ejercicio1", "ejercicio2", "proyectoFinal"];
+        expect(buscarProyecto("no_Existent", proyectos)).toEqual("");
     });
     
 })
