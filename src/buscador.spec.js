@@ -10,13 +10,23 @@ describe("Buscador", () =>{
         proyectos.push("my_Unique_Project");
         expect(buscarProyecto("my_Unique_Project",proyectos)).toEqual("my_Unique_Project");
     })
+
+    it("finds a project when it exists in an array with many other projects", () => {
+        let proyectos = [];
+        proyectos.push("my_Project_1");
+        proyectos.push("my_Project_2");
+        proyectos.push("my_Project_3");
+        expect(buscarProyecto("my_Project_2",proyectos)).toEqual("my_Project_2");
+    })
 })
 function buscarProyecto(name, proyectos){
     if (proyectos.length === 0){
         return "";
     }
-    
-    if (proyectos.includes(name)) {
-        return name;
+    for(const project of proyectos){
+        if(project === name)
+        {
+            return project;
+        }
     }
 }
