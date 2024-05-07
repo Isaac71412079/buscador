@@ -4,7 +4,19 @@ describe("Buscador", () =>{
         expect(buscarProyecto("exercise1",proyectos)).toEqual("");
         
     })
+
+    it("finds project when it exists in the array of projects", () => {
+        let proyectos = [];
+        proyectos.push("my_Unique_Project");
+        expect(buscarProyecto("my_Unique_Project",proyectos)).toEqual("my_Unique_Project");
+    })
 })
-function buscarProyecto(name, project){
-    return "";
+function buscarProyecto(name, proyectos){
+    if (proyectos.length === 0){
+        return "";
+    }
+    
+    if (proyectos.includes(name)) {
+        return name;
+    }
 }
