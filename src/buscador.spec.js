@@ -18,15 +18,25 @@ describe("Buscador", () =>{
         proyectos.push("my_Project_3");
         expect(buscarProyecto("my_Project_2",proyectos)).toEqual("my_Project_2");
     })
+
+    // buscar y enceontrar mas de una coindencia de proyectos
+    it("finds multiple projects when there are multiple matches", () => {
+        let proyectos = ["my_Project_1", "my_Project_2", "my_Special_Project_2", "my_Project_3"];
+        expect(buscarProyecto("Project_2", proyectos)).toEqual(["my_Project_2", "my_Special_Project_2"]);
+    });
+    
 })
 function buscarProyecto(name, proyectos){
     if (proyectos.length === 0){
         return "";
     }
+    let coincidencias = [];
     for(const project of proyectos){
-        if(project === name)
-        {
-            return project;
+        if(project.includes(name)) { 
+            coincidencias.push(project);
         }
     }
+    if (coincidencias.length === 0) return "";
+    if (coincidencias.length === 1) return coincidencias[0]; 
+    return coincidencias; 
 }
